@@ -4,6 +4,7 @@ import { MockedProvider } from "@apollo/client/testing";
 import {
 	render,
 	screen,
+	waitFor,
 } from "@testing-library/react";
 
 const mocks = [
@@ -124,4 +125,21 @@ it("renders loading stage", () => {
 		screen.getByText(/Loading.../i);
 
 	expect(LoadingText).toBeInTheDocument();
+});
+
+it("renders Launchpad details with correct length", async () => {
+	render(
+		<MockedProvider
+			mocks={mocks}
+			addTypename={false}
+		>
+			<LaunchPadData />
+		</MockedProvider>
+	);
+
+	await waitFor(() => {
+		expect(
+			screen.getAllByTestId("LaunchPadData")
+		).toHaveLength(6);
+	});
 });

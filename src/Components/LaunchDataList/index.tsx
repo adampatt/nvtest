@@ -12,6 +12,14 @@ export default function LaunchList() {
 			</div>
 		);
 	}
+
+	if (data?.launchesPast.length === 0) {
+		return (
+			<div data-testid="no-data-to-display">
+				No launches
+			</div>
+		);
+	}
 	return (
 		<section className="sectionContainer">
 			<div className="titleHolder">
@@ -19,7 +27,11 @@ export default function LaunchList() {
 			</div>
 			<div className="CardContainer">
 				{data.launchesPast.map((ld) => (
-					<div className="Card">
+					<div
+						className="Card"
+						data-testid="PastLaunchData"
+						key={ld.id}
+					>
 						<h4 data-testid="MissonName">
 							Mission name: {ld.mission_name}{" "}
 						</h4>
