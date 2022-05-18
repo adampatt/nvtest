@@ -1,0 +1,105 @@
+.App {
+	text-align: center;
+}
+
+* {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.RocketTableContainer {
+	justify-content: flex-end;
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 3rem;
+	background-color: #201182;
+}
+
+.RocketTableHeader {
+	display: flex;
+	justify-content: space-between;
+	padding: 0.25rem;
+}
+
+.RocketTableHeader h1 {
+	color: white;
+	padding-left: 2rem;
+}
+
+button {
+	background-color: #f7fafc;
+	width: 20%;
+	border-radius: 0.5rem;
+	padding: 16px 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.2rem;
+	border-style: none;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+table {
+	width: auto;
+	table-layout: fixed;
+	border: 1px solid #201182;
+}
+
+tbody {
+	width: 100%;
+	border: 1px solid #201182;
+}
+
+tr {
+	width: 33%;
+}
+
+th,
+td {
+	padding: 1rem;
+	text-align: left;
+	font-weight: 500;
+	font-size: 1.2rem;
+	color: white;
+}
+
+.sectionContainer {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding-bottom: 1.5rem;
+	background-color: #201182;
+}
+
+.titleHolder {
+	display: flex;
+	justify-content: flex-start;
+	padding-left: 2rem;
+}
+
+.titleHolder h2 {
+	color: white;
+}
+
+.CardContainer {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.Card {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 31%;
+	margin: 1%;
+	border-radius: 0.5rem;
+	background-color: #f7fafc;
+	border-style: none;
+}
+
+.Card h4 {
+	padding-left: 0.2rem;
+	text-align: left;
+}
