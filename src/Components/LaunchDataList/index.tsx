@@ -1,4 +1,6 @@
 import { useLaunches } from "../../hooks/useLaunches";
+import LaunchDataCard from "./launchDataCard";
+
 export default function LaunchList() {
 	const { error, loading, data } = useLaunches();
 
@@ -27,19 +29,12 @@ export default function LaunchList() {
 			</div>
 			<div className="CardContainer">
 				{data.launchesPast.map((ld) => (
-					<div
-						className="Card"
-						data-testid="PastLaunchData"
-						key={ld.id}
-					>
-						<h4 data-testid="MissonName">
-							Mission name: {ld.mission_name}{" "}
-						</h4>
-						<h4>Rocket: {ld.rocket.rocket_name} </h4>
-						<h4>
-							Success: {ld.launch_success ? "Yes" : "No"}{" "}
-						</h4>
-					</div>
+					<LaunchDataCard
+						mission_name={ld.mission_name}
+						rocket={ld.rocket}
+						launch_success={ld.launch_success}
+						id={ld.id}
+					/>
 				))}
 			</div>
 		</section>

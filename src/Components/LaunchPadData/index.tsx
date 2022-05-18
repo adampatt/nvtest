@@ -1,4 +1,5 @@
 import { useLaunchPad } from "../../hooks/useLaunchPad";
+import LaunchDataCard from "./launchPadDataCard";
 
 export default function LaunchPadData() {
 	const { error, loading, data } = useLaunchPad();
@@ -19,17 +20,12 @@ export default function LaunchPadData() {
 			</div>
 			<div className="CardContainer">
 				{data.launchpads.map((lp) => (
-					<div
-						className="Card"
-						key={lp.id}
-						data-testid="LaunchPadData"
-					>
-						<h4>Details: {lp.details}</h4>
-						<h4>
-							Location: {lp.location.name},
-							{lp.location.region}{" "}
-						</h4>
-					</div>
+					<LaunchDataCard
+						details={lp.details}
+						location={lp.location}
+						name={lp.name}
+						id={lp.id}
+					/>
 				))}
 			</div>
 		</section>
