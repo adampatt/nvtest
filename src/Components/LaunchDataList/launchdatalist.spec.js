@@ -4,6 +4,7 @@ import { MockedProvider } from "@apollo/client/testing";
 import {
 	render,
 	screen,
+	waitFor,
 } from "@testing-library/react";
 
 const mocks = [
@@ -21,26 +22,41 @@ const mocks = [
 						mission_name: "Starlink-15 (v1.0)",
 						id: "109",
 						launch_success: true,
+						rocket: {
+							rocket_name: "Falcon 9",
+						},
 					},
 					{
 						mission_name: "Sentinel-6 Michael Freilich",
 						id: "108",
 						launch_success: true,
+						rocket: {
+							rocket_name: " Falcon 9",
+						},
 					},
 					{
 						mission_name: "Crew-1",
 						id: "107",
 						launch_success: true,
+						rocket: {
+							rocket_name: " Falcon 9",
+						},
 					},
 					{
 						mission_name: "GPS III SV04 (Sacagawea)",
 						id: "106",
 						launch_success: true,
+						rocket: {
+							rocket_name: " Falcon 9",
+						},
 					},
 					{
 						mission_name: "Starlink-14 (v1.0)",
 						id: "105",
 						launch_success: true,
+						rocket: {
+							rocket_name: " Falcon 9",
+						},
 					},
 				],
 			},
@@ -57,6 +73,22 @@ const mocksError = [
 			},
 		},
 		error: new Error("An error occurred"),
+	},
+];
+
+const mocksNoData = [
+	{
+		request: {
+			query: GET_LAUNCHES_PAST,
+			variables: {
+				limit: 5,
+			},
+		},
+		result: {
+			data: {
+				launchesPast: [],
+			},
+		},
 	},
 ];
 
@@ -77,7 +109,7 @@ it("renders error stage", async () => {
 	expect(ErrorText).toBeInTheDocument();
 });
 
-it("renders loading stage", async () => {
+it("renders loading stage", () => {
 	render(
 		<MockedProvider
 			mocks={mocks}
@@ -91,4 +123,40 @@ it("renders loading stage", async () => {
 		screen.getByText(/Loading.../i);
 
 	expect(LoadingText).toBeInTheDocument();
+});
+
+it("renders no launches when launches array is empty", async () => {
+	render(
+		<MockedProvider
+			mocks={mocksNoData}
+			addTypename={false}
+		>
+			<LaunchList />
+		</MockedProvider>
+	);
+
+	const NoLaunchesText = await screen.findByTestId(
+		"no-data-to-display"
+	);
+
+	expect(NoLaunchesText).toBeInTheDocument();
+});
+
+it("renders the five most recent launches", async () => {
+	render(
+		<MockedProvider
+			mocks={mocks}
+			addTypename={false}
+		>
+			<LaunchList />
+		</MockedProvider>
+	);
+
+	await waitFor(() => {
+		let limitToCheck =
+			mocks[0].request.variables.limit;
+		expect(
+			screen.getAllByTestId("PastLaunchData")
+		).toHaveLength(limitToCheck);
+	});
 });

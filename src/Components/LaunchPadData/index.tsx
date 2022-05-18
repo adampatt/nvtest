@@ -19,7 +19,11 @@ export default function LaunchPadData() {
 			</div>
 			<div className="CardContainer">
 				{data.launchpads.map((lp) => (
-					<div className="Card" key={lp.id}>
+					<div
+						className="Card"
+						key={lp.id}
+						data-testid="LaunchPadData"
+					>
 						<h4>Details: {lp.details}</h4>
 						<h4>
 							Location: {lp.location.name},
