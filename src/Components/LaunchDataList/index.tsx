@@ -35,6 +35,7 @@ export default function LaunchList() {
 						rocket={ld.rocket}
 						launch_success={ld.launch_success}
 						id={ld.id}
+						key={ld.id}
 					/>
 				))}
 			</div>

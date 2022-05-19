@@ -1,3 +1,4 @@
+import React from "react";
 import { MockedProvider } from "@apollo/client/testing";
 import {
 	render,
@@ -23,8 +24,7 @@ const mocks = [
 							region: "California",
 						},
 						id: "vafb_slc_3w",
-						name:
-							"Vandenberg Air Force Base Space Launch Complex 3W",
+						name: "Vandenberg Air Force Base Space Launch Complex 3W",
 					},
 					{
 						details:
@@ -34,8 +34,7 @@ const mocks = [
 							region: "Florida",
 						},
 						id: "ccafs_slc_40",
-						name:
-							"Cape Canaveral Air Force Station Space Launch Complex 40",
+						name: "Cape Canaveral Air Force Station Space Launch Complex 40",
 					},
 					{
 						details:
@@ -65,8 +64,7 @@ const mocks = [
 							region: "California",
 						},
 						id: "vafb_slc_4e",
-						name:
-							"Vandenberg Air Force Base Space Launch Complex 4E",
+						name: "Vandenberg Air Force Base Space Launch Complex 4E",
 					},
 					{
 						details:
@@ -76,8 +74,7 @@ const mocks = [
 							region: "Florida",
 						},
 						id: "ksc_lc_39a",
-						name:
-							"Kennedy Space Center Historic Launch Complex 39A",
+						name: "Kennedy Space Center Historic Launch Complex 39A",
 					},
 				],
 			},
@@ -138,8 +135,8 @@ it("renders Launchpad details with correct length", async () => {
 	);
 
 	await waitFor(() => {
-		expect(
-			screen.getAllByTestId("LaunchPadData")
-		).toHaveLength(6);
+		const launchPadDataCards =
+			screen.getAllByTestId("LaunchPadData");
+		expect(launchPadDataCards).toHaveLength(6);
 	});
 });

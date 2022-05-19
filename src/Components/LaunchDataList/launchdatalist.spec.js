@@ -1,11 +1,12 @@
-import { GET_LAUNCHES_PAST } from "../../hooks/useLaunches";
-import LaunchList from "./index";
+import React from "react";
 import { MockedProvider } from "@apollo/client/testing";
 import {
 	render,
 	screen,
 	waitFor,
 } from "@testing-library/react";
+import { GET_LAUNCHES_PAST } from "../../hooks/useLaunches";
+import LaunchList from "./index";
 
 const mocks = [
 	{
@@ -27,7 +28,8 @@ const mocks = [
 						},
 					},
 					{
-						mission_name: "Sentinel-6 Michael Freilich",
+						mission_name:
+							"Sentinel-6 Michael Freilich",
 						id: "108",
 						launch_success: true,
 						rocket: {
@@ -43,7 +45,8 @@ const mocks = [
 						},
 					},
 					{
-						mission_name: "GPS III SV04 (Sacagawea)",
+						mission_name:
+							"GPS III SV04 (Sacagawea)",
 						id: "106",
 						launch_success: true,
 						rocket: {
@@ -135,9 +138,10 @@ it("renders no launches when launches array is empty", async () => {
 		</MockedProvider>
 	);
 
-	const NoLaunchesText = await screen.findByTestId(
-		"no-data-to-display"
-	);
+	const NoLaunchesText =
+		await screen.findByTestId(
+			"no-data-to-display"
+		);
 
 	expect(NoLaunchesText).toBeInTheDocument();
 });
@@ -153,10 +157,13 @@ it("renders the five most recent launches", async () => {
 	);
 
 	await waitFor(() => {
-		let limitToCheck =
+		const limitToCheck =
 			mocks[0].request.variables.limit;
-		expect(
-			screen.getAllByTestId("PastLaunchData")
-		).toHaveLength(limitToCheck);
+		const pastLaunchCard = screen.getAllByTestId(
+			"PastLaunchData"
+		);
+		expect(pastLaunchCard).toHaveLength(
+			limitToCheck
+		);
 	});
 });

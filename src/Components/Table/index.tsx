@@ -58,6 +58,7 @@ function SortButton({
 		<button
 			type="button"
 			onClick={onClick}
+			data-testid={`button-case-${sortKey}`}
 			className={`${
 				sortKey === columnKey &&
 				sortOrder === "desc"

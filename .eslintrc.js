@@ -2,6 +2,7 @@ module.exports = {
 	env: {
 		browser: true,
 		es2021: true,
+		"jest/globals": true,
 	},
 	extends: [
 		"plugin:react/recommended",
@@ -16,11 +17,27 @@ module.exports = {
 		ecmaVersion: "latest",
 		sourceType: "module",
 	},
-	plugins: ["react", "@typescript-eslint"],
+	plugins: [
+		"react",
+		"@typescript-eslint",
+		"jest",
+	],
 	rules: {
+		"jest/no-disabled-tests": "warn",
+		"jest/no-focused-tests": "error",
+		"jest/no-identical-title": "error",
+		"jest/prefer-to-have-length": "warn",
+		"jest/valid-expect": "error",
 		"react/jsx-filename-extension": [
 			2,
-			{ extensions: [".js", ".jsx", ".ts", ".tsx"] },
+			{
+				extensions: [
+					".js",
+					".jsx",
+					".ts",
+					".tsx",
+				],
+			},
 		],
 		"import/extensions": [
 			"error",
@@ -36,7 +53,12 @@ module.exports = {
 	settings: {
 		"import/resolver": {
 			node: {
-				extensions: [".js", ".jsx", ".ts", ".tsx"],
+				extensions: [
+					".js",
+					".jsx",
+					".ts",
+					".tsx",
+				],
 			},
 		},
 	},
