@@ -1,11 +1,11 @@
-import { GET_ROCKETS } from "../../hooks/useRockets";
-import RocketDataTable from "./index";
+import React from "react";
 import { MockedProvider } from "@apollo/client/testing";
 import {
 	render,
 	screen,
 } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { GET_ROCKETS } from "../../hooks/useRockets";
+import Table from "./index";
 
 const mocks = [
 	{
@@ -76,7 +76,7 @@ it("renders error stage", async () => {
 			mocks={mocksError}
 			addTypename={false}
 		>
-			<RocketDataTable />
+			<Table />
 		</MockedProvider>
 	);
 
@@ -93,7 +93,7 @@ it("renders loading stage", async () => {
 			mocks={mocks}
 			addTypename={false}
 		>
-			<RocketDataTable />
+			<Table />
 		</MockedProvider>
 	);
 
@@ -109,7 +109,7 @@ it("renders with MockedProviderData", async () => {
 			mocks={mocks}
 			addTypename={false}
 		>
-			<RocketDataTable />
+			<Table />
 		</MockedProvider>
 	);
 
@@ -118,75 +118,17 @@ it("renders with MockedProviderData", async () => {
 	expect(LaunchPadSiteName).toBeInTheDocument();
 });
 
-it("changes the button text when pressed", async () => {
-	render(
-		<MockedProvider
-			mocks={mocks}
-			addTypename={false}
-		>
-			<RocketDataTable />
-		</MockedProvider>
-	);
-
-	const SortButtonAsc = await screen.findByText(
-		"Sort in Ascending order of weight"
-	);
-
-	expect(SortButtonAsc).toBeInTheDocument();
-
-	const button = screen.getByRole("button");
-	userEvent.click(button);
-
-	const SortButtonDes = await screen.findByText(
-		"Sort in Descending order of weight"
-	);
-
-	expect(SortButtonDes).toBeInTheDocument();
-});
-
 it("renders table", async () => {
 	render(
 		<MockedProvider
 			mocks={mocks}
 			addTypename={false}
 		>
-			<RocketDataTable />
+			<Table />
 		</MockedProvider>
 	);
-
 	const TableElement = await screen.findAllByRole(
 		"table"
 	);
 	expect(TableElement).toHaveLength(1);
-});
-
-it("sorts data by weight when clicked", async () => {
-	render(
-		<MockedProvider
-			mocks={mocks}
-			addTypename={false}
-		>
-			<RocketDataTable />
-		</MockedProvider>
-	);
-
-	const SortButtonAsc = await screen.findByText(
-		"Sort in Ascending order of weight"
-	);
-
-	expect(SortButtonAsc).toBeInTheDocument();
-	const button = screen.getByRole("button");
-	userEvent.click(button);
-
-	const trElement = await screen.findAllByTestId(
-		"tr-case-",
-		{
-			exact: false,
-		}
-	);
-	expect(trElement.length).toBe(2);
-	expect(trElement[0]).toHaveTextContent("549054");
-	expect(trElement[1]).toHaveTextContent(
-		"1420788"
-	);
 });

@@ -17,9 +17,7 @@ export default function LaunchDataCard({
 			key={id}
 		>
 			<div className="IndividualCardData">
-				<h5 data-testid="MissonName">
-					Mission name
-				</h5>
+				<h5>Mission name</h5>
 				<p>{mission_name}</p>
 			</div>
 			<div className="IndividualCardData">
@@ -42,7 +40,3 @@ export default function LaunchDataCard({
 		</div>
 	);
 }
-
-// All centered
-// Mission name rocket and success in block purple one line when wide, breaks down when smaller
-// Display emoji for success

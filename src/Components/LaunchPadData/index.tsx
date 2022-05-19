@@ -26,6 +26,7 @@ export default function LaunchPadData() {
 						location={lp.location}
 						name={lp.name}
 						id={lp.id}
+						key={lp.id}
 					/>
 				))}
 			</div>
