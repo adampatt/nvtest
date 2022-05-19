@@ -1,0 +1,128 @@
+.sectionContainer {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding-bottom: 1.5rem;
+	background-color: rgb(237, 242, 247);
+}
+
+.titleHolder {
+	display: flex;
+	justify-content: flex-start;
+	padding-left: 2.5;
+}
+
+.titleHolder h2 {
+	color: black;
+}
+
+.Card {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 31%;
+	margin: 1%;
+	border-radius: 0.5rem;
+	background-color: #ffff;
+	border-style: none;
+	box-shadow: 3.2px 3.8px 3.7px
+			rgba(0, 0, 0, 0.044),
+		10.7px 12.7px 12.5px rgba(0, 0, 0, 0.066),
+		48px 57px 56px rgba(0, 0, 0, 0.11);
+}
+
+@media only screen and (max-width: 400px) {
+	.CardContainer {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: 2.5%;
+	}
+	.Card {
+		width: 95%;
+	}
+	.IndividualCardDataLP {
+		width: 100%;
+		padding-left: 5%;
+	}
+	h5 {
+		color: #9c3587;
+	}
+}
+
+@media only screen and (min-width: 400px) {
+	.CardContainer {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+		justify-content: flex-start;
+		width: 100%;
+		padding: 2.5%;
+	}
+	.Card {
+		width: 47.5%;
+		margin-left: 1.5%;
+	}
+	.IndividualCardDataLP {
+		width: 100%;
+		padding-left: 5%;
+	}
+	h5 {
+		color: #9c3587;
+	}
+}
+
+@media only screen and (min-width: 600px) {
+	.Card {
+		width: 30%;
+	}
+	.CardContainer {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
+	}
+}
+
+@media only screen and (min-width: 940px) {
+	.Card {
+		width: 47.5%;
+	}
+	.IndividualCardData {
+		display: flex;
+		flex-direction: row;
+	}
+	.IndividualCardData h5 {
+		width: 42.5%;
+	}
+	.IndividualCardData p {
+		width: 55%;
+	}
+}
+
+@media only screen and (min-width: 1075px) {
+	.IndividualCardData {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-content: baseline;
+		align-items: baseline;
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	.IndividualCardData {
+		display: flex;
+		justify-content: flex-start;
+		align-content: baseline;
+		align-items: baseline;
+		width: 100%;
+		gap: 2.5%;
+	}
+	.IndividualCardData h5 {
+		width: 42.5%;
+		padding-left: 2.5%;
+	}
+	.IndividualCardData p {
+		width: 55%;
+	}
+}
