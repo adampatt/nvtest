@@ -1,5 +1,6 @@
 import React from "react";
 import { Launchpads } from "../../hooks/useLaunchPad";
+import "./styles.css";
 
 export default function LaunchDataCard({
 	location,

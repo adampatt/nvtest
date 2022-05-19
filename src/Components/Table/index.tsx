@@ -129,12 +129,10 @@ export default function Desas() {
 	}
 
 	return (
-		<>
-			<h1>Sm</h1>
-			<table>
-				<thead>
-					<tr>
-						{/* {headers.map((row) => (
+		<table>
+			<thead>
+				<tr>
+					{/* {headers.map((row) => (
 							<td key={row.key}>
 								{row.label}{" "}
 								<SortButton
@@ -149,11 +147,11 @@ export default function Desas() {
 								/>
 							</td>
 						))} */}
-					</tr>
-				</thead>
+				</tr>
+			</thead>
 
-				<tbody>
-					{/* {sortedData().map((a) => (
+			<tbody>
+				{/* {sortedData().map((a) => (
 					<tr key={a.id}>
 						<td>{a.id}</td>
 						<td>{a.name}</td>
@@ -161,8 +159,7 @@ export default function Desas() {
 						<td>{a.mass.kg}</td>
 					</tr>
 				))} */}
-				</tbody>
-			</table>
-		</>
+			</tbody>
+		</table>
 	);
 }

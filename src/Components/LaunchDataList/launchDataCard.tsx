@@ -1,6 +1,7 @@
 import React from "react";
 import { Launches } from "../../hooks/useLaunches";
 import Emoji from "../Emoji";
+import "./styles.css";
 
 export default function LaunchDataCard({
 	mission_name,
