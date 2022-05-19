@@ -5,9 +5,9 @@ import React, {
 } from "react";
 import {
 	useRockets,
-	Rockets,
 	RocketData,
 } from "../../hooks/useRockets";
+import "./styles.css";
 
 type SortKeys =
 	| "id"
@@ -15,9 +15,8 @@ type SortKeys =
 	| "description"
 	| "mass";
 
-type SortOrder = "ascn" | "desc";
+type SortOrder = "asc" | "desc";
 
-// export this to test in its own section
 function sortData({
 	tableData,
 	sortKey,
@@ -27,31 +26,20 @@ function sortData({
 	sortKey: SortKeys;
 	reverse: boolean;
 }) {
-	// return [{ name: "adam" }]; good way to check
 	const sDat = [...(tableData?.rockets || [])];
 	const sortedData =
-		sDat.sort((a, b) => {
-			// if (a[sortKey] < b[sortKey]) {
-			// 	return -1;
-			// }
-			// return 1;
-
-			const nameA = a.id.toUpperCase(); // ignore upper and lowercase
-			const nameB = b.id.toUpperCase(); // ignore upper and lowercase
-			if (nameA < nameB) {
-				return -1;
-			}
-			if (nameA > nameB) {
+		sDat
+			.filter((rocket) => rocket.active)
+			.sort((a, b) => {
+				if (a[sortKey] < b[sortKey]) {
+					return -1;
+				}
 				return 1;
-			}
-
-			return 0;
-		}) || [];
+			}) || [];
 
 	if (reverse) {
 		return sortedData?.reverse();
 	}
-	console.log({ sortedData });
 	return sortedData;
 }
 
@@ -82,21 +70,20 @@ function SortButton({
 	);
 }
 
-export default function Desas() {
+export default function Table() {
 	const { data, loading, error } = useRockets();
 	const [sortKey, setSortKey] =
 		useState<SortKeys>("mass");
 	const [sortOrder, setSortOrder] =
-		useState<SortOrder>("ascn");
+		useState<SortOrder>("asc");
 
 	const headers: {
 		key: SortKeys;
 		label: string;
 	}[] = [
-		{ key: "id", label: "ID" },
 		{ key: "name", label: "Name" },
 		{ key: "description", label: "Description" },
-		{ key: "mass", label: "Weight" },
+		{ key: "mass", label: "Weight (kg)" },
 	];
 
 	const sortedData = useCallback(
@@ -111,7 +98,7 @@ export default function Desas() {
 
 	function changeSort(key: SortKeys) {
 		setSortOrder(
-			sortOrder === "ascn" ? "desc" : "ascn"
+			sortOrder === "asc" ? "desc" : "asc"
 		);
 
 		setSortKey(key);
@@ -129,12 +116,19 @@ export default function Desas() {
 	}
 
 	return (
-		<table>
-			<thead>
-				<tr>
-					{/* {headers.map((row) => (
-							<td key={row.key}>
-								{row.label}{" "}
+		<section className="RocketTableContainer">
+			<div className="RocketTableHeader">
+				<h2>Rockets available and active</h2>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						{headers.map((row) => (
+							<td
+								key={row.key}
+								className="columnTitle"
+							>
+								<h5>{row.label}</h5>
 								<SortButton
 									columnKey={row.key}
 									onClick={() =>
@@ -146,20 +140,20 @@ export default function Desas() {
 									}}
 								/>
 							</td>
-						))} */}
-				</tr>
-			</thead>
-
-			<tbody>
-				{/* {sortedData().map((a) => (
-					<tr key={a.id}>
-						<td>{a.id}</td>
-						<td>{a.name}</td>
-						<td>{a.description}</td>
-						<td>{a.mass.kg}</td>
+						))}
 					</tr>
-				))} */}
-			</tbody>
-		</table>
+				</thead>
+
+				<tbody>
+					{sortedData().map((a) => (
+						<tr key={a.id}>
+							<td>{a.name}</td>
+							<td>{a.description}</td>
+							<td>{a.mass.kg}</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</section>
 	);
 }

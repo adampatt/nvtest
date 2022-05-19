@@ -1,20 +1,13 @@
-/*
-  1. Use a more-intuitive box-sizing model.
-*/
 *,
 *::before,
 *::after {
 	box-sizing: border-box;
 }
-/*
-  2. Remove default margin
-*/
+
 * {
 	margin: 0;
 }
-/*
-  3. Allow percentage-based heights in the application
-*/
+
 html {
 	font-family: Cambria, Georgia, "Times New Roman",
 		Times, serif;
@@ -25,20 +18,14 @@ html {
 body {
 	height: 100%;
 }
-/*
-  Typographic tweaks!
-  4. Add accessible line-height
-  5. Improve text rendering
-*/
+
 body {
 	line-height: 1.5;
 	-webkit-font-smoothing: antialiased;
 	display: flex;
 	justify-content: center;
 }
-/*
-  6. Improve media defaults
-*/
+
 img,
 picture,
 video,
@@ -47,18 +34,14 @@ svg {
 	display: block;
 	max-width: 100%;
 }
-/*
-  7. Remove built-in form typography styles
-*/
+
 input,
 button,
 textarea,
 select {
 	font: inherit;
 }
-/*
-  8. Avoid text overflows
-*/
+
 p,
 h1,
 h2,
@@ -90,63 +73,4 @@ h5 {
 }
 h6 {
 	font-size: 16px;
-}
-
-.RocketTableContainer {
-	justify-content: flex-end;
-	display: flex;
-	flex-direction: column;
-	padding-bottom: 3rem;
-	background-color: #201182;
-}
-
-.RocketTableHeader {
-	display: flex;
-	justify-content: space-between;
-	padding: 0.25rem;
-}
-
-.RocketTableHeader h1 {
-	color: white;
-	padding-left: 2rem;
-}
-
-button {
-	background-color: #f7fafc;
-	width: 20%;
-	border-radius: 0.5rem;
-	padding: 16px 24px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 1.2rem;
-	border-style: none;
-}
-
-button:hover {
-	cursor: pointer;
-}
-
-table {
-	width: auto;
-	table-layout: fixed;
-	border: 1px solid #201182;
-}
-
-tbody {
-	width: 100%;
-	border: 1px solid #201182;
-}
-
-tr {
-	width: 33%;
-}
-
-th,
-td {
-	padding: 1rem;
-	text-align: left;
-	font-weight: 500;
-	font-size: 1.2rem;
-	color: white;
 }
