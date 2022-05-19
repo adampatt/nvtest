@@ -2,7 +2,6 @@ import React from "react";
 import { Launchpads } from "../../hooks/useLaunchPad";
 
 export default function LaunchDataCard({
-	details,
 	location,
 	name,
 	id,
@@ -13,10 +12,16 @@ export default function LaunchDataCard({
 			key={id}
 			data-testid="LaunchPadData"
 		>
-			<h4>Name: {name}</h4>
-			<h4>
-				Location: {location.name},{location.region}{" "}
-			</h4>
+			<div className="IndividualCardDataLP">
+				<h5 data-testid="MissonName">Name:</h5>
+				<p>{name}</p>
+			</div>
+			<div className="IndividualCardDataLP">
+				<h5 data-testid="MissonName">Location</h5>
+				<p>
+					{location.name},{location.region}{" "}
+				</p>
+			</div>
 		</div>
 	);
 }
