@@ -1,80 +1,26 @@
 import React, {
-	MouseEventHandler,
 	useState,
 	useCallback,
 } from "react";
-import {
-	useRockets,
-	RocketData,
-} from "../../hooks/useRockets";
+import { useRockets } from "../../hooks/useRockets";
 import "./styles.css";
+import SortButton from "./sortButton";
+import SortData from "./sortDataFunction";
 
-type SortKeys =
+export type SortKeys =
 	| "id"
 	| "name"
 	| "description"
 	| "mass";
 
-type SortOrder = "asc" | "desc";
-
-function sortData({
-	tableData,
-	sortKey,
-	reverse,
-}: {
-	tableData?: RocketData;
-	sortKey: SortKeys;
-	reverse: boolean;
-}) {
-	const sDat = [...(tableData?.rockets || [])];
-	const sortedData =
-		sDat
-			.filter((rocket) => rocket.active)
-			.sort((a, b) => {
-				if (a[sortKey] < b[sortKey]) {
-					return -1;
-				}
-				return 1;
-			}) || [];
-
-	if (reverse) {
-		return sortedData?.reverse();
-	}
-	return sortedData;
-}
-
-function SortButton({
-	sortOrder,
-	columnKey,
-	sortKey,
-	onClick,
-}: {
-	sortOrder: SortOrder;
-	columnKey: SortKeys;
-	sortKey: SortKeys;
-	onClick: MouseEventHandler<HTMLButtonElement>;
-}) {
-	return (
-		<button
-			type="button"
-			onClick={onClick}
-			data-testid={`button-case-${sortKey}`}
-			className={`${
-				sortKey === columnKey &&
-				sortOrder === "desc"
-					? "sort-button sort-reverse"
-					: "sort-button"
-			}`}
-		>
-			▲
-		</button>
-	);
-}
+export type SortOrder = "asc" | "desc";
 
 export default function Table() {
 	const { data, loading, error } = useRockets();
+
 	const [sortKey, setSortKey] =
 		useState<SortKeys>("mass");
+
 	const [sortOrder, setSortOrder] =
 		useState<SortOrder>("asc");
 
@@ -89,7 +35,7 @@ export default function Table() {
 
 	const sortedData = useCallback(
 		() =>
-			sortData({
+			SortData({
 				tableData: data,
 				sortKey,
 				reverse: sortOrder === "desc",
@@ -101,13 +47,13 @@ export default function Table() {
 		setSortOrder(
 			sortOrder === "asc" ? "desc" : "asc"
 		);
-
 		setSortKey(key);
 	}
 
 	if (error) {
 		return <div>`Error! ${error.message}`</div>;
 	}
+
 	if (loading || !data) {
 		return (
 			<div data-testid="loading-stage">
@@ -144,7 +90,6 @@ export default function Table() {
 						))}
 					</tr>
 				</thead>
-
 				<tbody>
 					{sortedData().map((a) => (
 						<tr key={a.id}>
