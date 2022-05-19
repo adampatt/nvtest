@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
 import React, {
 	useState,
 	useEffect,
@@ -27,23 +29,25 @@ export default function RocketDataTable() {
 	useEffect(() => {
 		if (loading === false && data) {
 			setRocketData(
-				data.rockets.filter((rocket) => rocket.active)
+				data.rockets.filter(
+					(rocket) => rocket.active
+				)
 			);
 		}
 	}, [loading, data]);
 
 	const sorting = (mass: string) => {
 		if (order === "asc") {
-			const sorted = [...rocketData].sort((a, b) => {
-				return a.mass.kg > b.mass.kg ? 1 : -1;
-			});
+			const sorted = [...rocketData].sort(
+				(a, b) => (a.mass.kg > b.mass.kg ? 1 : -1)
+			);
 			setRocketData(sorted);
 			setOrder("des");
 		}
 		if (order === "des") {
-			const sorted = [...rocketData].sort((a, b) => {
-				return a.mass.kg > b.mass.kg ? -1 : 1;
-			});
+			const sorted = [...rocketData].sort(
+				(a, b) => (a.mass.kg > b.mass.kg ? -1 : 1)
+			);
 			setRocketData(sorted);
 			setOrder("asc");
 		}
@@ -87,9 +91,9 @@ export default function RocketDataTable() {
 			<table>
 				<thead>
 					<tr>
-						{headers.map((row) => {
-							return <td key={row.key}>{row.label}</td>;
-						})}
+						{headers.map((row) => (
+							<td key={row.key}>{row.label}</td>
+						))}
 					</tr>
 				</thead>
 				<tbody>

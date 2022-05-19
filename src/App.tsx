@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
 import RocketDataTable from "./Components/RocketDataList";
-import LaunchList from "./Components/LaunchDataList";
-import LaunchPadData from "./Components/LaunchPadData";
+// import LaunchList from "./Components/LaunchDataList";
+// import LaunchPadData from "./Components/LaunchPadData";
 import Table from "./Components/Table";
 
 function App() {

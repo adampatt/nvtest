@@ -1,10 +1,14 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
 import React, {
 	MouseEventHandler,
 	useState,
 	useCallback,
+	useEffect,
 } from "react";
 import {
 	useRockets,
+	Rockets,
 	RocketData,
 } from "../../hooks/useRockets";
 
@@ -27,14 +31,12 @@ function sortData({
 }) {
 	const sDat = [...(tableData?.rockets || [])];
 	const sortedData =
-		sDat
-			.filter((rocket) => rocket.active)
-			.sort((a, b) => {
-				if (a[sortKey] < b[sortKey]) {
-					return -1;
-				}
-				return 1;
-			}) || [];
+		sDat.sort((a, b) => {
+			if (a[sortKey] < b[sortKey]) {
+				return -1;
+			}
+			return 1;
+		}) || [];
 
 	if (reverse) {
 		return sortedData?.reverse();
@@ -84,6 +86,10 @@ export default function Table() {
 		{ key: "description", label: "Description" },
 		{ key: "mass", label: "Weight (kg)" },
 	];
+
+	// eslint-disable-next-line no-unsafe-optional-chaining
+	const fildData = [data?.rockets];
+	console.log({ fildData });
 
 	const sortedData = useCallback(
 		() =>
