@@ -5,7 +5,6 @@ import React, {
 } from "react";
 import {
 	useRockets,
-	Rockets,
 	RocketData,
 } from "../../hooks/useRockets";
 
@@ -27,31 +26,18 @@ function sortData({
 	sortKey: SortKeys;
 	reverse: boolean;
 }) {
-	// return [{ name: "adam" }]; good way to check
 	const sDat = [...(tableData?.rockets || [])];
 	const sortedData =
 		sDat.sort((a, b) => {
-			// if (a[sortKey] < b[sortKey]) {
-			// 	return -1;
-			// }
-			// return 1;
-
-			const nameA = a.id.toUpperCase(); // ignore upper and lowercase
-			const nameB = b.id.toUpperCase(); // ignore upper and lowercase
-			if (nameA < nameB) {
+			if (a[sortKey] < b[sortKey]) {
 				return -1;
 			}
-			if (nameA > nameB) {
-				return 1;
-			}
-
-			return 0;
+			return 1;
 		}) || [];
 
 	if (reverse) {
 		return sortedData?.reverse();
 	}
-	console.log({ sortedData });
 	return sortedData;
 }
 
@@ -82,7 +68,7 @@ function SortButton({
 	);
 }
 
-export default function Desas() {
+export default function Table() {
 	const { data, loading, error } = useRockets();
 	const [sortKey, setSortKey] =
 		useState<SortKeys>("mass");
@@ -93,10 +79,9 @@ export default function Desas() {
 		key: SortKeys;
 		label: string;
 	}[] = [
-		{ key: "id", label: "ID" },
 		{ key: "name", label: "Name" },
 		{ key: "description", label: "Description" },
-		{ key: "mass", label: "Weight" },
+		{ key: "mass", label: "Weight (kg)" },
 	];
 
 	const sortedData = useCallback(
@@ -132,33 +117,35 @@ export default function Desas() {
 		<table>
 			<thead>
 				<tr>
-					{/* {headers.map((row) => (
-							<td key={row.key}>
-								{row.label}{" "}
-								<SortButton
-									columnKey={row.key}
-									onClick={() =>
-										changeSort(row.key)
-									}
-									{...{
-										sortOrder,
-										sortKey,
-									}}
-								/>
-							</td>
-						))} */}
+					{headers.map((row) => (
+						<td
+							key={row.key}
+							className="columnTitle"
+						>
+							<h5>{row.label}</h5>
+							<SortButton
+								columnKey={row.key}
+								onClick={() =>
+									changeSort(row.key)
+								}
+								{...{
+									sortOrder,
+									sortKey,
+								}}
+							/>
+						</td>
+					))}
 				</tr>
 			</thead>
 
 			<tbody>
-				{/* {sortedData().map((a) => (
+				{sortedData().map((a) => (
 					<tr key={a.id}>
-						<td>{a.id}</td>
 						<td>{a.name}</td>
 						<td>{a.description}</td>
 						<td>{a.mass.kg}</td>
 					</tr>
-				))} */}
+				))}
 			</tbody>
 		</table>
 	);
