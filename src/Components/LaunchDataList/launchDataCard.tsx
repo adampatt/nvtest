@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from "react";
 import { Launches } from "../../hooks/useLaunches";
 import Emoji from "../Emoji";

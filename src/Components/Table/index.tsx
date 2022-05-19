@@ -7,6 +7,7 @@ import {
 	useRockets,
 	RocketData,
 } from "../../hooks/useRockets";
+import "./styles.css";
 
 type SortKeys =
 	| "id"
@@ -14,7 +15,7 @@ type SortKeys =
 	| "description"
 	| "mass";
 
-type SortOrder = "ascn" | "desc";
+type SortOrder = "asc" | "desc";
 
 function sortData({
 	tableData,
@@ -74,7 +75,7 @@ export default function Table() {
 	const [sortKey, setSortKey] =
 		useState<SortKeys>("mass");
 	const [sortOrder, setSortOrder] =
-		useState<SortOrder>("ascn");
+		useState<SortOrder>("asc");
 
 	const headers: {
 		key: SortKeys;
@@ -97,7 +98,7 @@ export default function Table() {
 
 	function changeSort(key: SortKeys) {
 		setSortOrder(
-			sortOrder === "ascn" ? "desc" : "ascn"
+			sortOrder === "asc" ? "desc" : "asc"
 		);
 
 		setSortKey(key);
@@ -115,39 +116,44 @@ export default function Table() {
 	}
 
 	return (
-		<table>
-			<thead>
-				<tr>
-					{headers.map((row) => (
-						<td
-							key={row.key}
-							className="columnTitle"
-						>
-							<h5>{row.label}</h5>
-							<SortButton
-								columnKey={row.key}
-								onClick={() =>
-									changeSort(row.key)
-								}
-								{...{
-									sortOrder,
-									sortKey,
-								}}
-							/>
-						</td>
-					))}
-				</tr>
-			</thead>
-
-			<tbody>
-				{sortedData().map((a) => (
-					<tr key={a.id}>
-						<td>{a.name}</td>
-						<td>{a.description}</td>
-						<td>{a.mass.kg}</td>
+		<section className="RocketTableContainer">
+			<div className="RocketTableHeader">
+				<h2>Rockets available and active</h2>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						{headers.map((row) => (
+							<td
+								key={row.key}
+								className="columnTitle"
+							>
+								<h5>{row.label}</h5>
+								<SortButton
+									columnKey={row.key}
+									onClick={() =>
+										changeSort(row.key)
+									}
+									{...{
+										sortOrder,
+										sortKey,
+									}}
+								/>
+							</td>
+						))}
 					</tr>
-				))}
-			</tbody>
-		</table>
+				</thead>
+
+				<tbody>
+					{sortedData().map((a) => (
+						<tr key={a.id}>
+							<td>{a.name}</td>
+							<td>{a.description}</td>
+							<td>{a.mass.kg}</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</section>
 	);
 }
