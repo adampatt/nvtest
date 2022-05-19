@@ -4,9 +4,11 @@ import LaunchDataCard from "./launchPadDataCard";
 
 export default function LaunchPadData() {
 	const { error, loading, data } = useLaunchPad();
+
 	if (error) {
 		return <div>`Error! ${error.message}`</div>;
 	}
+
 	if (loading || !data) {
 		return (
 			<div data-testid="loading-stage">
@@ -14,6 +16,7 @@ export default function LaunchPadData() {
 			</div>
 		);
 	}
+
 	return (
 		<section className="sectionContainer">
 			<div className="titleHolder">
