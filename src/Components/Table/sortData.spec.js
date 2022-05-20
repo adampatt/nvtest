@@ -24,17 +24,6 @@ function SortingData(data, sortKey) {
 	return sortedData;
 }
 
-test("returns undefined by default", () => {
-	const mock = jest.fn();
-
-	const result = mock("foo");
-
-	expect(result).toBeUndefined();
-	expect(mock).toHaveBeenCalled();
-	expect(mock).toHaveBeenCalledTimes(1);
-	expect(mock).toHaveBeenCalledWith("foo");
-});
-
 function filterByTerm(inputArr, searchTerm) {
 	return inputArr.rockets.filter((arrayElement) =>
 		arrayElement.name.match(searchTerm)
@@ -43,12 +32,6 @@ function filterByTerm(inputArr, searchTerm) {
 
 describe("Filters by name", () => {
 	test("it should filter by a search term name of rocket", () => {
-		// const input = [
-		// 	{ id: 1, url: "https://www.url1.dev" },
-		// 	{ id: 2, url: "https://www.url2.dev" },
-		// 	{ id: 3, url: "https://www.link3.dev" },
-		// ];
-
 		const input = {
 			rockets: [
 				{
