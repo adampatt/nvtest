@@ -11,9 +11,15 @@ export default function SortData({
 	reverse: boolean;
 }) {
 	const sDat = [...(tableData?.rockets || [])];
-
 	const sortedData =
 		sDat
+			.map((d) => ({
+				active: d.active,
+				description: d.description,
+				id: d.id,
+				name: d.name,
+				mass: d.mass.kg,
+			}))
 			.filter((rocket) => rocket.active)
 			.sort((a, b) => {
 				if (a[sortKey] < b[sortKey]) {
@@ -25,6 +31,5 @@ export default function SortData({
 	if (reverse) {
 		return sortedData?.reverse();
 	}
-
 	return sortedData;
 }
