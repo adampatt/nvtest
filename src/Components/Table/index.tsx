@@ -95,7 +95,7 @@ export default function Table() {
 						<tr key={a.id}>
 							<td>{a.name}</td>
 							<td>{a.description}</td>
-							<td>{a.mass.kg}</td>
+							<td>{a.mass}</td>
 						</tr>
 					))}
 				</tbody>

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders when there are no inputs 1`] = `
+<span
+  aria-hidden="true"
+  aria-label=""
+  className="emoji"
+  role="img"
+/>
+`;
+
+exports[`renders when there is a label added 1`] = `
+<span
+  aria-hidden="false"
+  aria-label="tick"
+  className="emoji"
+  role="img"
+/>
+`;
+
+exports[`renders when there is a label and symbol input 1`] = `
+<span
+  aria-hidden="false"
+  aria-label="tick"
+  className="emoji"
+  role="img"
+>
+  ✅
+</span>
+`;
